@@ -78,12 +78,12 @@ export function HeroSection({}: HeroSectionProps) {
               </a>
             </Button>
             <Button variant="outline" size="icon" className="rounded-full hover:scale-110 transition-transform" asChild>
-              <a href="https://twitter.com/gokmencelik" target="_blank" rel="noopener noreferrer">
+              <a href="https://twitter.com/gokmeneth" target="_blank" rel="noopener noreferrer">
                 <Twitter className="w-5 h-5" />
               </a>
             </Button>
             <Button variant="outline" size="icon" className="rounded-full hover:scale-110 transition-transform" asChild>
-              <a href="https://t.me/gokmencelik" target="_blank" rel="noopener noreferrer">
+              <a href="https://t.me/gokmenceliks" target="_blank" rel="noopener noreferrer">
                 <TelegramIcon />
               </a>
             </Button>
