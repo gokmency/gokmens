@@ -4,6 +4,7 @@ import { Spotlight } from "@/components/ui/spotlight";
 import { Button } from "@/components/ui/button";
 import { Github, Linkedin, Twitter, Mail } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 import { EmailPopup } from "@/components/ui/email-popup";
 import { Typewriter } from "@/components/ui/typewriter";
 
@@ -93,6 +94,11 @@ export function HeroSection({}: HeroSectionProps) {
             >
               <Mail className="w-5 h-5" />
               <span className="text-sm font-medium">Email Me</span>
+            </Button>
+            <Button asChild className="rounded-full hover:scale-105 transition-transform px-4 flex items-center gap-2 bg-gradient-to-r from-yellow-500 to-orange-500 text-white">
+              <Link to="/playground">
+                <span className="text-sm font-medium">My Playground</span>
+              </Link>
             </Button>
           </div>
         </div>
