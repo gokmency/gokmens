@@ -4,6 +4,7 @@ import { PlaygroundSection } from './components/sections/playground';
 import { BlogSection } from './components/sections/blog';
 import { BlogDetailSection } from './components/sections/blog-detail';
 import { BackgroundBeams } from './components/ui/background-beams';
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
@@ -18,6 +19,8 @@ function App() {
           <Route path="/blog/:slug" element={<BlogDetailSection />} />
         </Routes>
       </div>
+      
+      <Analytics />
     </div>
   );
 }
