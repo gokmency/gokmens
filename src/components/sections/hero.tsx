@@ -117,6 +117,18 @@ export function HeroSection({}: HeroSectionProps) {
         isOpen={isEmailPopupOpen} 
         onClose={() => setIsEmailPopupOpen(false)} 
       />
+      
+      {/* Footer */}
+      <footer className="absolute bottom-0 left-0 right-0 p-4 border-t border-neutral-800/30 z-10">
+        <div className="flex justify-center">
+          <Link 
+            to="/blog" 
+            className="text-xs text-neutral-600 hover:text-neutral-400 transition-colors cursor-pointer"
+          >
+            Blog
+          </Link>
+        </div>
+      </footer>
     </Card>
   );
 }

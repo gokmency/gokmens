@@ -168,3 +168,29 @@ html, body {
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.3);
 }
+
+/* Scroll bar'ı tamamen sağa dayamak için */
+.scrollbar-edge {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.2) rgba(0, 0, 0, 0.2);
+}
+
+.scrollbar-edge::-webkit-scrollbar {
+  width: 8px;
+}
+
+.scrollbar-edge::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  margin: 0;
+  padding: 0;
+}
+
+.scrollbar-edge::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  border: none;
+}
+
+.scrollbar-edge::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}

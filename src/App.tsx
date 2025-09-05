@@ -1,6 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { HeroSection } from './components/sections/hero';
-import { PlaygroundSection } from './components/sections/playground'; // We will create this component
+import { PlaygroundSection } from './components/sections/playground';
+import { BlogSection } from './components/sections/blog';
+import { BlogDetailSection } from './components/sections/blog-detail';
 import { BackgroundBeams } from './components/ui/background-beams';
 
 function App() {
@@ -12,6 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<HeroSection />} />
           <Route path="/playground" element={<PlaygroundSection />} />
+          <Route path="/blog" element={<BlogSection />} />
+          <Route path="/blog/:slug" element={<BlogDetailSection />} />
         </Routes>
       </div>
     </div>
