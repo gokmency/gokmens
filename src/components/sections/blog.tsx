@@ -2,13 +2,23 @@ import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
 import { useState } from 'react';
 
+interface BlogPost {
+  id: number;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  slug: string;
+  tags?: string[];
+}
+
 export const BlogSection = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [searchQuery, setSearchQuery] = useState<string>('');
   
   const categories = ['All', 'Web3', 'Fintech', 'Community', 'Investment', 'Web Design', 'Coding'];
   
-  const blogPosts = [
+  const blogPosts: BlogPost[] = [
     {
       id: 1,
       title: "Web3 Community Building: Strategies for Success",
@@ -33,7 +43,8 @@ export const BlogSection = () => {
       excerpt: "Best practices for managing crypto communities in Turkey. Telegram management, Discord strategies, and cultural considerations for Turkish users.",
       date: "2024-01-15",
       category: "Community",
-      slug: "community-management-turkish-crypto-projects"
+      slug: "community-management-turkish-crypto-projects",
+      tags: ["Community", "Crypto", "Turkey", "Management", "Engagement"]
     },
     {
       id: 4,
@@ -338,7 +349,7 @@ export const BlogSection = () => {
     const matchesSearch = searchQuery === '' || 
       post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+      (post.tags && post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase())));
     
     return matchesCategory && matchesSearch;
   });
