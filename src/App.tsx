@@ -3,6 +3,7 @@ import { HeroSection } from './components/sections/hero';
 import { PlaygroundSection } from './components/sections/playground';
 import { BlogSection } from './components/sections/blog';
 import { BlogDetailSection } from './components/sections/blog-detail';
+import { FAQSection } from './components/sections/faq';
 import { BackgroundBeams } from './components/ui/background-beams';
 import { Analytics } from '@vercel/analytics/react';
 
@@ -17,6 +18,7 @@ function App() {
           <Route path="/playground" element={<PlaygroundSection />} />
           <Route path="/blog" element={<BlogSection />} />
           <Route path="/blog/:slug" element={<BlogDetailSection />} />
+          <Route path="/faq" element={<FAQSection />} />
         </Routes>
       </div>
       

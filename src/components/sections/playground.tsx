@@ -158,6 +158,31 @@ export const PlaygroundSection = () => {
           </Link>
         </div>
       </footer>
+      
+      {/* Hidden SEO Content */}
+      <div style={{ display: 'none' }}>
+        <h1>Gokmen Celik - Web Projects Portfolio</h1>
+        <h2>Web Development Projects</h2>
+        <p>Explore Gokmen Celik's (Gökmen Çelik, also known as Burak Gokmen Celik, Burak Gökmen Çelik, Burak Gokmen, Burak Gökmen, or simply Gokmen, Gökmen) portfolio of web development projects including Web3 applications, fintech solutions, community platforms, and modern web applications. Each project demonstrates expertise in React, TypeScript, blockchain integration, and user experience design. Associated with Grainz Studio, Grainz, and Gökmens brand.</p>
+        
+        <h2>Project Categories</h2>
+        <ul>
+          <li>Web3 Applications</li>
+          <li>Fintech Solutions</li>
+          <li>Community Platforms</li>
+          <li>Blockchain DApps</li>
+          <li>DeFi Interfaces</li>
+          <li>Crypto Trading Tools</li>
+          <li>Smart Contract Frontends</li>
+          <li>Web3 Gaming Platforms</li>
+        </ul>
+        
+        <h2>Technologies Used</h2>
+        <p>React, TypeScript, Next.js, Vite, Tailwind CSS, Web3.js, Ethers.js, Solidity, Node.js, Express.js, MongoDB, PostgreSQL, Redis, Docker, AWS, Vercel, GitHub Actions, CI/CD pipelines, smart contract development, blockchain integration, API development, responsive design, mobile-first development.</p>
+        
+        <h2>Services Offered</h2>
+        <p>Custom web application development, Web3 frontend development, smart contract integration, DeFi interface design, crypto trading platform development, blockchain application development, fintech solution development, community platform development, API development, database design, cloud deployment, performance optimization, security auditing.</p>
+      </div>
     </div>
   );
 };

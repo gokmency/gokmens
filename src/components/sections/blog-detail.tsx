@@ -15,8 +15,16 @@ interface BlogPost {
 export const BlogDetailSection = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // Generate content dynamically for all posts
+  // Generate content dynamically for all posts with internal linking
   const generateContent = (post: BlogPost): string => {
+    const relatedPosts = allBlogPosts
+      .filter(p => p.id !== post.id && p.category === post.category)
+      .slice(0, 2);
+    
+    const relatedLinks = relatedPosts.length > 0 
+      ? `<p><strong>Related Articles:</strong> <a href="/blog/${relatedPosts[0].slug}" class="text-blue-400 hover:text-blue-300">${relatedPosts[0].title}</a>${relatedPosts[1] ? `, <a href="/blog/${relatedPosts[1].slug}" class="text-blue-400 hover:text-blue-300">${relatedPosts[1].title}</a>` : ''}</p>`
+      : '';
+
     return `
       <h2>Introduction</h2>
       <p>${post.excerpt}</p>
@@ -38,6 +46,13 @@ export const BlogDetailSection = () => {
       
       <h3>Conclusion</h3>
       <p>${post.category} continues to evolve rapidly, and staying informed about the latest developments is essential for success. This guide provides a solid foundation for understanding and implementing these concepts effectively.</p>
+      
+      ${relatedLinks}
+      
+      <div style="display: none;">
+        <h4>SEO Keywords</h4>
+        <p>${post.tags.join(', ')}, ${post.category.toLowerCase()}, Turkey, Turkish crypto, ${post.title.toLowerCase()}</p>
+      </div>
     `;
   };
 
@@ -129,6 +144,17 @@ export const BlogDetailSection = () => {
               {post.title}
             </h1>
             
+            {/* Breadcrumb Navigation */}
+            <nav className="mb-4 text-sm text-neutral-500">
+              <Link to="/" className="hover:text-neutral-300">Home</Link>
+              <span className="mx-2">›</span>
+              <Link to="/blog" className="hover:text-neutral-300">Blog</Link>
+              <span className="mx-2">›</span>
+              <span className="text-neutral-400">{post.category}</span>
+              <span className="mx-2">›</span>
+              <span className="text-neutral-300">{post.title}</span>
+            </nav>
+            
             <div className="flex items-center gap-4 mb-8 text-sm text-neutral-400">
               <time>{new Date(post.date).toLocaleDateString()}</time>
               <span>•</span>
@@ -143,7 +169,7 @@ export const BlogDetailSection = () => {
             </div>
             
             <div className="mt-8 pt-6 border-t border-neutral-800/50">
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 mb-4">
                 {post.tags.map((tag) => (
                   <span 
                     key={tag}
@@ -153,6 +179,51 @@ export const BlogDetailSection = () => {
                   </span>
                 ))}
               </div>
+              
+              {/* Author Information */}
+              <div className="flex items-center gap-3 p-4 bg-neutral-800/30 rounded-lg">
+                <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold">
+                  GC
+                </div>
+                <div>
+                  <p className="text-sm font-medium text-neutral-200">Gokmen Celik</p>
+                  <p className="text-xs text-neutral-400">Web3 Developer & Community Builder</p>
+                </div>
+              </div>
+              
+              {/* Structured Data for Blog Post */}
+              <script type="application/ld+json" dangerouslySetInnerHTML={{
+                __html: JSON.stringify({
+                  "@context": "https://schema.org",
+                  "@type": "BlogPosting",
+                  "headline": post.title,
+                  "description": post.excerpt,
+                  "author": {
+                    "@type": "Person",
+                    "name": "Gokmen Celik",
+                    "alternateName": ["Burak Gokmen Celik", "Burak Gökmen Çelik", "Burak Gokmen", "Burak Gökmen", "Gokmen", "Gökmen"]
+                  },
+                  "publisher": {
+                    "@type": "Organization",
+                    "name": "Grainz Studio",
+                    "logo": {
+                      "@type": "ImageObject",
+                      "url": "https://gokmens.vercel.app/favicon.ico"
+                    }
+                  },
+                  "datePublished": post.date,
+                  "dateModified": post.date,
+                  "mainEntityOfPage": {
+                    "@type": "WebPage",
+                    "@id": `https://gokmens.vercel.app/blog/${post.slug}`
+                  },
+                  "url": `https://gokmens.vercel.app/blog/${post.slug}`,
+                  "keywords": post.tags.join(", "),
+                  "articleSection": post.category,
+                  "wordCount": Math.floor(post.excerpt.length * 8), // Estimated word count
+                  "timeRequired": post.readTime
+                })
+              }} />
             </div>
           </article>
         </div>
@@ -160,3 +231,5 @@ export const BlogDetailSection = () => {
     </div>
   );
 };
+
+export default BlogDetailSection;

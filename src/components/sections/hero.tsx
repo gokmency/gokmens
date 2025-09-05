@@ -43,6 +43,7 @@ export function HeroSection({}: HeroSectionProps) {
       <div className="flex flex-col lg:flex-row h-full relative">
         {/* Left content */}
         <div className="flex-1 p-6 md:p-8 lg:p-12 relative z-10 flex flex-col justify-center">
+          <p className="text-sm text-neutral-500 mb-2">Hello, I'm</p>
           <h1 className="text-4xl md:text-6xl xl:text-7xl font-bold bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400 leading-tight">
             GOKMEN CELIK
           </h1>
@@ -62,9 +63,11 @@ export function HeroSection({}: HeroSectionProps) {
             />
           </div>
           <p className="mt-6 text-neutral-300 max-w-lg text-base md:text-lg xl:text-xl">
-          Independent developer and crypto community builder, crafting innovative digital experiences 
-          and fostering thriving communities. Passionate about decentralization, innovation, and exploring 
-          opportunities in fintech and investment.
+          Independent developer and crypto community builder turning ideas into usable products 
+          and engaged communities. I design and ship end-to-end experiences from smart contracts and APIs to front end polish and community ops. 
+          I believe in open, permissionless systems, sustainable incentives, and transparent governance. 
+          Exploring opportunities across web3, developer tooling, and investment, 
+          with a bias for shipping and real world impact.
           </p>
           
           <div className="flex flex-wrap gap-4 mt-8">
@@ -129,6 +132,34 @@ export function HeroSection({}: HeroSectionProps) {
           </Link>
         </div>
       </footer>
+      
+      {/* Hidden SEO Content */}
+      <div style={{ display: 'none' }}>
+        <h1>Gokmen Celik - Web3 Developer & Community Builder</h1>
+        <h2>About Gokmen Celik</h2>
+        <p>Gokmen Celik (Gökmen Çelik), also known as Burak Gokmen Celik (Burak Gökmen Çelik), Burak Gokmen (Burak Gökmen), Burak Celik (Burak Çelik), or simply Gokmen (Gökmen), is an independent developer and crypto community builder based in Turkey. He specializes in Web3 development, smart contracts, fintech solutions, and community building. With expertise in blockchain technology, DeFi protocols, and Turkish crypto market dynamics, Gokmen helps projects turn ideas into usable products and engaged communities. Associated with Grainz Studio (Grainz) and Gökmens brand.</p>
+        
+        <h2>Services</h2>
+        <ul>
+          <li>Web3 Development</li>
+          <li>Smart Contract Development</li>
+          <li>Community Building & Management</li>
+          <li>Fintech Solutions</li>
+          <li>DeFi Protocol Development</li>
+          <li>Crypto Investment Consulting</li>
+          <li>Turkish Crypto Market Analysis</li>
+          <li>Blockchain Consulting</li>
+        </ul>
+        
+        <h2>Expertise</h2>
+        <p>Web3, blockchain technology, smart contracts, DeFi, cryptocurrency, community building, fintech, Turkish crypto market, tokenomics, DAO governance, decentralized applications, yield farming, crypto trading strategies, blockchain analytics, Web3 gaming, fintech UX design, community moderation tools, crypto tax planning Turkey, Web3 identity solutions, blockchain security, smart contract auditing.</p>
+        
+        <h2>Contact</h2>
+        <p>Email: gokmen@gokmens.com | Twitter: @gokmeneth | LinkedIn: gokmencelik | Telegram: gokmenceliks | GitHub: gokmens</p>
+        
+        <h2>Alternative Names & Brands</h2>
+        <p>Burak Gokmen Celik, Burak Gökmen Çelik, Burak Gokmen, Burak Gökmen, Gokmen Celik, Gökmen Çelik, Gokmen, Gökmen, Burak Celik, Burak Çelik, Gokmen vs, Burak vs Gokmen, Gokmen developer, Burak developer, Turkish developer Gokmen, Turkish developer Burak, Gokmen Web3, Gökmen Web3, Grainz Studio, Grainz, Gökmens, Gokmen Antalya, Gökmen Antalya, Web3 community manager Turkey, Web3 community manager Türkiye, Community manager Turkey, Community manager Türkiye, Blockchain community manager, Turkey Web3 agency, Türkiye Web3 agency, Crypto agency Turkey, Crypto agency Türkiye</p>
+      </div>
     </Card>
   );
 }

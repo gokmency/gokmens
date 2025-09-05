@@ -1,7 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Button } from '../ui/button';
+import { useState } from 'react';
 
 export const BlogSection = () => {
+  const [selectedCategory, setSelectedCategory] = useState<string>('All');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+  
+  const categories = ['All', 'Web3', 'Fintech', 'Community', 'Investment', 'Web Design', 'Coding'];
+  
   const blogPosts = [
     {
       id: 1,
@@ -9,7 +15,8 @@ export const BlogSection = () => {
       excerpt: "Learn how to build and manage thriving Web3 communities in Turkey. Essential strategies for community engagement, tokenomics, and decentralized governance.",
       date: "2024-01-20",
       category: "Web3",
-      slug: "web3-community-building-strategies-success"
+      slug: "web3-community-building-strategies-success",
+      tags: ["Web3", "Community", "Turkey", "Tokenomics", "Governance"]
     },
     {
       id: 2,
@@ -17,7 +24,8 @@ export const BlogSection = () => {
       excerpt: "Exploring the latest fintech investment trends and opportunities in Turkey. From digital banking to crypto adoption and regulatory developments.",
       date: "2024-01-18",
       category: "Fintech",
-      slug: "fintech-investment-opportunities-turkey-2024"
+      slug: "fintech-investment-opportunities-turkey-2024",
+      tags: ["Fintech", "Investment", "Turkey", "Digital Banking", "Payments"]
     },
     {
       id: 3,
@@ -324,6 +332,16 @@ export const BlogSection = () => {
       slug: "web3-event-management-hosting-successful-gatherings"
     }
   ];
+  
+  const filteredPosts = blogPosts.filter(post => {
+    const matchesCategory = selectedCategory === 'All' || post.category === selectedCategory;
+    const matchesSearch = searchQuery === '' || 
+      post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      post.tags.some(tag => tag.toLowerCase().includes(searchQuery.toLowerCase()));
+    
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className="h-screen w-full bg-black/[0.96] text-white overflow-hidden">
@@ -335,10 +353,50 @@ export const BlogSection = () => {
       
       <div className="w-full h-full overflow-y-auto scrollbar-edge pt-16">
         <div className="max-w-4xl mx-auto px-4 py-8">
-          <h1 className="text-4xl md:text-5xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Blog</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-b from-neutral-50 to-neutral-400">Blog</h1>
+          
+          {/* Search and Category Filter */}
+          <div className="mb-8 space-y-4">
+            {/* Search Input */}
+            <div className="max-w-md mx-auto">
+              <input
+                type="text"
+                placeholder="Search blog posts..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full px-4 py-2 bg-neutral-800/50 border border-neutral-700/50 rounded-full text-neutral-200 placeholder-neutral-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+            
+            {/* Category Filter */}
+            <div className="flex flex-wrap gap-2 justify-center">
+              {categories.map((category) => (
+                <button
+                  key={category}
+                  onClick={() => setSelectedCategory(category)}
+                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                    selectedCategory === category
+                      ? 'bg-blue-500 text-white'
+                      : 'bg-neutral-800/50 text-neutral-300 hover:bg-neutral-700/50'
+                  }`}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+          
+          {/* Results Count */}
+          <div className="mb-6 text-center">
+            <p className="text-neutral-400">
+              {filteredPosts.length} of {blogPosts.length} posts
+              {searchQuery && ` matching "${searchQuery}"`}
+              {selectedCategory !== 'All' && ` in ${selectedCategory}`}
+            </p>
+          </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {blogPosts.map((post) => (
+            {filteredPosts.map((post) => (
               <article key={post.id} className="bg-neutral-900/50 border border-neutral-800/50 rounded-lg p-6 hover:bg-neutral-800/50 hover:border-neutral-700/50 transition-all duration-200">
                 <div className="mb-3">
                   <span className="text-xs text-blue-400 bg-blue-400/10 px-2 py-1 rounded-full">
@@ -351,6 +409,23 @@ export const BlogSection = () => {
                 <p className="text-sm text-neutral-400 mb-4 line-clamp-3">
                   {post.excerpt}
                 </p>
+                
+                {/* Tags */}
+                {post.tags && post.tags.length > 0 && (
+                  <div className="mb-4">
+                    <div className="flex flex-wrap gap-1">
+                      {post.tags.slice(0, 3).map((tag, index) => (
+                        <span key={index} className="text-xs text-neutral-500 bg-neutral-800/50 px-2 py-1 rounded">
+                          #{tag}
+                        </span>
+                      ))}
+                      {post.tags.length > 3 && (
+                        <span className="text-xs text-neutral-500">+{post.tags.length - 3}</span>
+                      )}
+                    </div>
+                  </div>
+                )}
+                
                 <div className="flex items-center justify-between">
                   <time className="text-xs text-neutral-500">
                     {new Date(post.date).toLocaleDateString()}
@@ -365,6 +440,29 @@ export const BlogSection = () => {
               </article>
             ))}
           </div>
+        </div>
+        
+        {/* Hidden SEO Content */}
+        <div style={{ display: 'none' }}>
+          <h1>Web3, Fintech, and Community Building Resources</h1>
+          <p>Comprehensive guides on Web3 development, fintech investment opportunities in Turkey, community building strategies, and modern web design trends. Expert insights from Gokmen Celik (Gökmen Çelik, Burak Gokmen Celik, Burak Gökmen Çelik, Burak Gokmen, Burak Gökmen, Gokmen, Gökmen) on cryptocurrency, DeFi, smart contracts, and Turkish crypto market. Associated with Grainz Studio, Grainz, and Gökmens brand.</p>
+          
+          <h2>Popular Topics</h2>
+          <ul>
+            <li>Web3 Community Building Strategies</li>
+            <li>Fintech Investment Opportunities Turkey</li>
+            <li>Crypto Community Management</li>
+            <li>Smart Contract Development</li>
+            <li>DeFi Yield Farming Turkey</li>
+            <li>Blockchain Analytics</li>
+            <li>Turkish Crypto Market</li>
+            <li>Web3 Gaming Development</li>
+            <li>Fintech UX Design</li>
+            <li>Community Moderation Tools</li>
+          </ul>
+          
+          <h2>Keywords</h2>
+          <p>Web3 developer Turkey, crypto community builder, fintech investment Turkey, smart contracts, DeFi, blockchain development, Turkish crypto market, community management, Web3 gaming, fintech UX design, cryptocurrency trading Turkey, yield farming, tokenomics, DAO governance, decentralized applications, Turkish fintech ecosystem, crypto tax planning Turkey, Web3 identity, blockchain analytics, community building tools, Gokmen Celik, Gökmen Çelik, Burak Gokmen Celik, Burak Gökmen Çelik, Burak Gokmen, Burak Gökmen, Gokmen, Gökmen, Burak Celik, Burak Çelik, Gokmen developer, Burak developer, Turkish developer Gokmen, Turkish developer Burak, Gokmen Web3, Gökmen Web3, Grainz Studio, Grainz, Gökmens, Gokmen Antalya, Gökmen Antalya, Web3 community manager Turkey, Web3 community manager Türkiye, Community manager Turkey, Community manager Türkiye, Blockchain community manager, Turkey Web3 agency, Türkiye Web3 agency, Crypto agency Turkey, Crypto agency Türkiye</p>
         </div>
       </div>
     </div>
